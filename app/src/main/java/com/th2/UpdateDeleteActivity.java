@@ -85,13 +85,18 @@ public class UpdateDeleteActivity extends AppCompatActivity {
             Intent intentToMainActivity = new Intent(UpdateDeleteActivity.this, MainActivity.class);
             startActivity(intentToMainActivity);
         });
+
+        btnCancel.setOnClickListener(view -> {
+            Intent intentToMainActivity = new Intent(UpdateDeleteActivity.this, MainActivity.class);
+            startActivity(intentToMainActivity);
+        });
     }
     private void initView() {
         edName = findViewById(R.id.edName);
         edAuthor = findViewById(R.id.edAuthor);
         edPublishDate = findViewById(R.id.edPublishDate);
         edPrice = findViewById(R.id.edPrice);
-        spPublisher = findViewById(R.id.spinnerPublisher);
+        spPublisher = findViewById(R.id.spPublisher);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnCancel = findViewById(R.id.btnCancel);
         btnDelete = findViewById(R.id.btnDelete);

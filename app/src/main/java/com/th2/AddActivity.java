@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.th2.db.Database;
 import com.th2.model.Book;
@@ -55,6 +56,11 @@ public class AddActivity extends AppCompatActivity {
             Database db = new Database(AddActivity.this);
             db.addBook(newBook);
 
+            Intent intent = new Intent(AddActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        btCancel.setOnClickListener(view -> {
             Intent intent = new Intent(AddActivity.this, MainActivity.class);
             startActivity(intent);
         });

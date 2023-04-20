@@ -5,41 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edName"
-            android:hint="enter book name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edAuthor"
-            android:hint="enter author of this book"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edPublishDate"
-            android:editable="false"
-            android:hint="choose publish date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <Spinner
-            android:id="@+id/spinnerPublisher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edPrice"
-            android:hint="enter price of this book"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        android:layout_height="wrap_content"
+        android:id="@+id/edName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Enter book name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/edName"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Enter author of this book"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edPublishDate"
+        app:layout_constraintTop_toBottomOf="@+id/edAuthor"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Choose publish date"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spPublisher"
+        app:layout_constraintTop_toBottomOf="@+id/edPublishDate"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edPrice"
+        app:layout_constraintTop_toBottomOf="@+id/spPublisher"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Enter price of this book"/>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:orientation="horizontal"
         android:weightSum="3"

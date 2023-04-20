@@ -69,14 +69,14 @@ public class Database extends SQLiteOpenHelper {
     }
     public long updateBook(Book book){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", book.getName());
-        contentValues.put("author", book.getAuthor());
-        contentValues.put("publishDate", book.getPublishDate());
-        contentValues.put("publisher", book.getPublisher());
-        contentValues.put("price",Float.parseFloat(book.getPrice()));
+        ContentValues values = new ContentValues();
+        values.put("name", book.getName());
+        values.put("author", book.getAuthor());
+        values.put("publishDate", book.getPublishDate());
+        values.put("publisher", book.getPublisher());
+        values.put("price",Float.parseFloat(book.getPrice()));
         long result = sqLiteDatabase.update("books",
-                contentValues,"_id=?",
+                values,"id=?",
                 new String[]{book.getId()+""});
         sqLiteDatabase.close();
         return result;
@@ -84,9 +84,44 @@ public class Database extends SQLiteOpenHelper {
 
     public long deleteBook(int bookId){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        long result = sqLiteDatabase.delete("books", "_id=?",
+        long result = sqLiteDatabase.delete("books", "id=?",
                 new String[]{bookId+""});
         sqLiteDatabase.close();
         return result;
+    }
+
+    public List<Book> findBooksByPrice(String startPrice, String endPrice){
+        List<Book> listBook = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query("books",null,"price BETWEEN ? AND ?"
+                , new String[]{startPrice, endPrice},null,null,null);
+        while(cursor!=null && cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String author = cursor.getString(2);
+            String publishDate = cursor.getString(3);
+            String publisher = cursor.getString(4);
+            String price = cursor.getFloat(5)+"";
+            Book book = new Book(id,name,author,publishDate,publisher,price);
+            listBook.add(book);
+        }
+        return listBook;
+    }
+    public List<Book> getStatistic(){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        List<Book> listBook = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.query("books",new String[]{"id","name","author","publishDate","publisher","MAX(price) AS price"},
+                null, null,"publisher",null,"price DESC");
+        while(cursor!=null && cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String author = cursor.getString(2);
+            String publishDate = cursor.getString(3);
+            String publisher = cursor.getString(4);
+            String price = cursor.getFloat(5)+"";
+            Book book = new Book(id,name,author,publishDate,publisher,price);
+            listBook.add(book);
+        }
+        return listBook;
     }
 }
