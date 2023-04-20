@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TH2</string>
+    <string-array name="publisher">
+        <item>Giao duc</item>
+        <item>Khoa hoc va Xa hoi</item>
+        <item>Buu dien</item>
+        <item>Thong ke</item>
+    </string-array>
+</resources>
